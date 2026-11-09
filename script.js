@@ -19,12 +19,13 @@ function setMenu(open, returnFocus = false) {
   nav.classList.toggle('open', open);
   document.body.classList.toggle('menu-open', open);
   menuToggle.setAttribute('aria-expanded', String(open));
-  menuToggle.querySelector('span').textContent = open ? '−' : '+';
+  const indicator = menuToggle.querySelector('span');
+  if (indicator) indicator.textContent = open ? '−' : '+';
   if (open) nav.querySelector('a')?.focus();
   else if (returnFocus) menuToggle.focus();
 }
 menuToggle?.addEventListener('click', () => {
-  const open = !nav.classList.contains('open');
+  const open = !nav?.classList.contains('open');
   setMenu(open);
   if (!open) menuToggle.focus();
 });
