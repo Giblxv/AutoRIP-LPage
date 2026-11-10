@@ -1,7 +1,9 @@
 const whatsappNumber = '5511953336229';
 const messages = {
-  demo: 'Olá! Quero conhecer o AutoRIP e agendar uma demonstração para minha operação DTF/DTF UV.',
-  buy: 'Olá! Tenho interesse em comprar o AutoRIP. Quero conversar sobre minha operação e os próximos passos.'
+  demo: 'DEMO - vim pelo site',
+  duvida: 'DÚVIDA - vim pelo site',
+  doc: 'DOC - vim pelo site',
+  agendar: 'AGENDAR - vim pelo site'
 };
 
 function whatsappUrl(kind = 'demo') {
