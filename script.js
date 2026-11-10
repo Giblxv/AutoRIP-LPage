@@ -35,7 +35,16 @@ document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape' && nav?.classList.contains('open')) setMenu(false, true);
 });
 document.querySelectorAll('.site-nav a').forEach((link) => link.addEventListener('click', () => {
+  const menuWasOpen = nav?.classList.contains('open');
   setMenu(false);
+  if (!menuWasOpen) return;
+  const target = link.hash ? document.getElementById(link.hash.slice(1)) : null;
+  if (target) {
+    target.setAttribute('tabindex', '-1');
+    target.focus({ preventScroll: true });
+  } else {
+    menuToggle?.focus();
+  }
 }));
 
 const contactNote = document.querySelector('.final-cta small');
