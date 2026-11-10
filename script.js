@@ -37,14 +37,15 @@ document.addEventListener('keydown', (event) => {
 document.querySelectorAll('.site-nav a').forEach((link) => link.addEventListener('click', () => {
   const menuWasOpen = nav?.classList.contains('open');
   setMenu(false);
-  if (!menuWasOpen) return;
-  const target = link.hash ? document.getElementById(link.hash.slice(1)) : null;
-  if (target) {
-    target.setAttribute('tabindex', '-1');
-    target.focus({ preventScroll: true });
-  } else {
+  if (menuWasOpen && !link.hash) {
     menuToggle?.focus();
   }
+}));
+document.querySelectorAll('a[href^="#"]').forEach((link) => link.addEventListener('click', () => {
+  const target = link.hash ? document.getElementById(link.hash.slice(1)) : null;
+  if (!target) return;
+  if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+  target.focus({ preventScroll: true });
 }));
 
 const contactNote = document.querySelector('.final-cta small');
