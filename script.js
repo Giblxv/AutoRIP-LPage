@@ -38,4 +38,7 @@ document.querySelectorAll('.site-nav a').forEach((link) => link.addEventListener
   setMenu(false);
 }));
 
-document.querySelector('.final-cta small').textContent = `11 95333-6229 · atendimento comercial · ${new Date().getFullYear()}`;
+const contactNote = document.querySelector('.final-cta small');
+if (contactNote) {
+  contactNote.textContent = `11 95333-6229 · atendimento comercial · ${new Date().getFullYear()}`;
+}
