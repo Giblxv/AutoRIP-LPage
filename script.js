@@ -1,7 +1,9 @@
 const whatsappNumber = '5511953336229';
 const messages = {
-  demo: 'Olá! Quero conhecer o AutoRIP e agendar uma demonstração para minha operação DTF/DTF UV.',
-  buy: 'Olá! Tenho interesse em comprar o AutoRIP. Quero conversar sobre minha operação e os próximos passos.'
+  demo: 'DEMO - vim pelo site',
+  duvida: 'DÚVIDA - vim pelo site',
+  doc: 'DOC - vim pelo site',
+  agendar: 'AGENDAR - vim pelo site'
 };
 
 function whatsappUrl(kind = 'demo') {
@@ -33,7 +35,20 @@ document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape' && nav?.classList.contains('open')) setMenu(false, true);
 });
 document.querySelectorAll('.site-nav a').forEach((link) => link.addEventListener('click', () => {
+  const menuWasOpen = nav?.classList.contains('open');
   setMenu(false);
+  if (menuWasOpen && !link.hash) {
+    menuToggle?.focus();
+  }
+}));
+document.querySelectorAll('a[href^="#"]').forEach((link) => link.addEventListener('click', () => {
+  const target = link.hash ? document.getElementById(link.hash.slice(1)) : null;
+  if (!target) return;
+  if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+  target.focus({ preventScroll: true });
 }));
 
-document.querySelector('.final-cta small').textContent = `11 95333-6229 · atendimento comercial · ${new Date().getFullYear()}`;
+const contactNote = document.querySelector('.final-cta small');
+if (contactNote) {
+  contactNote.textContent = `11 95333-6229 · atendimento comercial · ${new Date().getFullYear()}`;
+}
